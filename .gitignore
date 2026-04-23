@@ -1,0 +1,24 @@
+# Open in any text editor and add these lines
+
+# Raw data files — too large for GitHub
+*.CSV
+*.csv
+*.zip
+*.ZIP
+
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment files — contains passwords
+.env
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
