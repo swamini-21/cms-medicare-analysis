@@ -2,9 +2,6 @@
 
 # Raw data files — too large for GitHub
 *.CSV
-*.csv
-*.zip
-*.ZIP
 
 
 # Jupyter checkpoints
