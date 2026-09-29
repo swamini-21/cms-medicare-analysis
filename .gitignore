@@ -1,18 +1,19 @@
-# Open in any text editor and add these lines
-
-# Raw data files — too large for GitHub
+# Raw data (too large, downloadable from CMS)
+Data/*.zip
+*.csv
 *.CSV
 
-
-# Jupyter checkpoints
+# Jupyter
 .ipynb_checkpoints/
+notebooks/Untitled.ipynb
 
-# Python cache
+# Python
 __pycache__/
 *.pyc
 *.pyo
+.venv/
 
-# Environment files — contains passwords
+# Environment files (contain passwords)
 .env
 *.env
 
