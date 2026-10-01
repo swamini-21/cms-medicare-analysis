@@ -21,7 +21,7 @@ An end-to-end analytics project that uses CMS data to examine how Medicare inpat
 
 ## Key Findings
 
-- **Minority-serving hospitals are not paid less.** Hospitals with ≥50% minority share average $24,495 per beneficiary vs. $16,707 for low-minority hospitals. *Hypothesis (not yet tested): urban concentration, since high-cost cities get higher CMS wage-index adjustments.*
+- **Minority-serving hospitals are not paid less.** Hospitals with ≥50% minority share average $24,205 per beneficiary vs. $16,129 for low-minority hospitals. The gap persists within metro hospitals ($25,220 vs. $16,926) and shrinks by about half after controlling for state, urban/rural status, risk score, and dual-eligible share (regression estimate: +$3,927, 95% CI $2,326 to $5,527). Urban concentration therefore explains only part of the gap.
 - **High dual-eligible hospitals are paid more per discharge** ($13,764 vs. $11,938). The median gap is only $516, so outlier hospitals account for much of the difference. *Same untested urban-concentration hypothesis.*
 - **Low-comorbidity hospitals are paid more per discharge than high-burden ones** ($14,493 vs. $12,045). *Hypothesis: specialty hospitals with different reimbursement structures.*
 
