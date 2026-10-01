@@ -22,9 +22,8 @@ An end-to-end analytics project that uses CMS data to examine how Medicare inpat
 ## Key Findings
 
 - **Minority-serving hospitals are not paid less.** Hospitals with ≥50% minority share average $24,205 per beneficiary vs. $16,129 for low-minority hospitals. The gap persists within metro hospitals ($25,220 vs. $16,926) and shrinks by about half after controlling for state, urban/rural status, risk score, and dual-eligible share (regression estimate: +$3,927, 95% CI $2,326 to $5,527). Urban concentration therefore explains only part of the gap.
-- **High dual-eligible hospitals are paid more per discharge** ($13,764 vs. $11,938). The median gap is only $516, so outlier hospitals account for much of the difference. *Same untested urban-concentration hypothesis.*
-- **Low-comorbidity hospitals are paid more per discharge than high-burden ones** ($14,493 vs. $12,045). *Hypothesis: specialty hospitals with different reimbursement structures.*
-
+- **High dual-eligible hospitals are paid slightly more per discharge** ($13,555 vs. $12,436; median gap about $630). The gap is concentrated in metro hospitals (+$2,340) and reverses in non-metro hospitals (-$530), because high-dual hospitals are disproportionately non-metro. A regression controlling for state, urban/rural status, specialty status, minority share, and comorbidity index estimates +$442 per discharge (95% CI $79 to $805), so the effect is real but small. Urban concentration does not explain the raw gap. An interaction model could test whether the effect truly differs by setting.
+- **Low-comorbidity hospitals are paid more per discharge than high-burden ones** ($14,512 vs. $12,129). Excluding specialty-type hospitals (flagged by name) shrinks the gap only slightly ($14,094 vs. $11,959), and a regression controlling for state, urban/rural status, specialty status, dual-eligible share, and minority share still estimates +$1,819 (95% CI $1,257 to $2,380). Specialty hospitals are therefore not the main driver. Payment per discharge is not case-mix adjusted, which may explain part of the remaining gap.
 ## Architecture
 
 ```mermaid
