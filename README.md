@@ -33,3 +33,109 @@ flowchart LR
     B --> C[(PostgreSQL<br/>star schema)]
     C --> D[Tableau<br/>8 dashboards]
 ```
+
+## Setup and How to Run
+
+### Prerequisites
+- Python 3.10+
+- PostgreSQL 14+ running locally on port 5432
+- Tableau Desktop or Tableau Public (only needed to open the dashboards)
+
+### 1. Get the data
+Download **Medicare Inpatient Hospitals - by Provider** (2023 and 2024) from the
+[CMS Data portal](https://data.cms.gov/) and place it so the folder layout is:
+
+```
+Data/
+└── Medicare Inpatient Hospitals - by Provider/
+    ├── 2023/*.CSV
+    └── 2024/*.CSV
+```
+
+### 2. Install dependencies
+```bash
+python -m venv venv
+source venv/Scripts/activate      # Git Bash on Windows
+pip install -r requirements.txt
+```
+
+### 3. Configure the database
+Create the database, then add your credentials to a `.env` file in the project root (see `.env.example`):
+```bash
+createdb -U postgres cms_project
+```
+```
+DB_PASSWORD=your_postgres_password
+```
+
+### 4. Run the pipeline
+Open `notebooks/ETL_Pipeline.ipynb` and run all cells. The Load step drops and
+recreates the tables, so it is safe to re-run.
+
+### Output
+| Table | Description |
+|-------|-------------|
+| `provider_stats` | Fact table, one row per hospital per year |
+| `dim_age`, `dim_gender`, `dim_race` | Beneficiary demographics (long format) |
+| `dim_conditions` | Chronic condition prevalence, tagged Physical or Behavioral |
+
+## Schema
+
+The PostgreSQL database (`cms_project`) uses a star-style design. `provider_stats` is the central table, with one row per hospital per year. The four dimension tables hold long-format breakdowns and join back on `(Provider_CCN, Year)`.
+
+```mermaid
+erDiagram
+    provider_stats ||--o{ dim_age : "CCN, Year"
+    provider_stats ||--o{ dim_gender : "CCN, Year"
+    provider_stats ||--o{ dim_race : "CCN, Year"
+    provider_stats ||--o{ dim_conditions : "CCN, Year"
+
+    provider_stats {
+        text Provider_CCN PK
+        int Year PK
+        text Hospital_Name
+        text Provider_State
+        int Total_Bene
+        int Total_Discharges
+        float Total_Medicare_Payment_Amnt
+        float Bene_Avg_Risk_Score
+        float Minority_Share
+        float dual_share
+        text comorbidity_tier
+        text bh_burden_bucket
+    }
+    dim_age {
+        text Provider_CCN PK
+        int Year PK
+        text Age_Group PK
+        int Bene_Count
+    }
+    dim_gender {
+        text Provider_CCN PK
+        int Year PK
+        text Gender PK
+        int Bene_Count
+    }
+    dim_race {
+        text Provider_CCN PK
+        int Year PK
+        text Race PK
+        int Bene_Count
+    }
+    dim_conditions {
+        text Provider_CCN PK
+        int Year PK
+        text Condition_Name PK
+        text Condition_Type
+        float Prevalence_Pct
+    }
+```
+
+**Design notes**
+- The composite key `(Provider_CCN, Year)` allows year-over-year comparison per hospital.
+- Demographics and conditions are stored in long format, so a new category needs no schema change.
+- Foreign keys use `ON DELETE CASCADE` to keep the tables consistent on reload.
+
+## Dashboards
+
+**[View the interactive dashboards on Tableau Public](https://public.tableau.com/views/Cms_Medicare_Analysis_Poject/Dashboard1)**
