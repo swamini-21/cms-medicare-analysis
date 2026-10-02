@@ -34,6 +34,18 @@ flowchart LR
 ```
 
 ## Setup and How to Run
+### Quick start (Docker)
+
+Prerequisite: Docker Desktop.
+
+```bash
+cp .env.example .env          # then set DB_PASSWORD in .env
+docker compose up --build
+```
+
+This starts PostgreSQL (exposed on `localhost:5433`) and runs the ingestion container, which pulls the 2023 and 2024 CMS inpatient files from the CMS Data API into the `raw_inpatient_provider` table. The ingestion is idempotent: re-running it replaces each year's rows instead of duplicating them.
+
+The cleaned star schema is built separately by the ETL notebook (see below), which reads the same database.
 
 ### Prerequisites
 - Python 3.10+

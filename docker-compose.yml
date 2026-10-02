@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pg-medicare
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: cms_project
+    ports:
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d cms_project"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ingest:
+    build: .
+    container_name: cms-ingest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: cms_project
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD}
+
+volumes:
+  pgdata:
