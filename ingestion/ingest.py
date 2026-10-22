@@ -44,11 +44,12 @@ def get_engine():
 
 def load_year(engine, year, rows):
     df = pd.DataFrame(rows)
-    df["Year"] = year
+    df.columns = df.columns.str.lower()
+    df["year"] = year
     with engine.begin() as conn:
         if inspect(conn).has_table(config.RAW_TABLE):
             conn.execute(
-                text(f'DELETE FROM {config.RAW_TABLE} WHERE "Year" = :y'), {"y": year}
+                text(f"DELETE FROM {config.RAW_TABLE} WHERE year = :y"), {"y": year}
             )
         df.to_sql(config.RAW_TABLE, conn, if_exists="append", index=False)
     return len(df)

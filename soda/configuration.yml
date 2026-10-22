@@ -1,0 +1,8 @@
+data_source cms_postgres:
+  type: postgres
+  host: localhost
+  port: "5433"
+  username: postgres
+  password: ${DB_PASSWORD}
+  database: cms_project
+  schema: public
