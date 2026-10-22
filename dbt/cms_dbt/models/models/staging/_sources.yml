@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: cms_raw
+    schema: public
+    description: Raw CMS data landed by the ingestion pipeline.
+    tables:
+      - name: raw_inpatient_provider
+        description: >
+          CMS Medicare Inpatient Hospitals by Provider (2023 and 2024),
+          loaded from the CMS Data API. All raw values are stored as text.

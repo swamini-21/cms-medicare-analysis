@@ -1,0 +1,28 @@
+[0m13:35:40.276354 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A8AA63BD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A8A9C3790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A8AA63D10>]}
+
+
+============================== 13:35:40.279547 | 86c2d3eb-ed6a-4c01-b551-cfaf3c942cd2 ==============================
+[0m13:35:40.279547 [info ] [MainThread]: Running with dbt=1.12.6
+[0m13:35:40.280536 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\swami\\.dbt', 'invocation_command': 'dbt init cms_dbt --skip-profile-setup', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m13:35:40.302860 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\swami\.dbt
+[0m13:35:40.304864 [debug] [MainThread]: Starter project path: C:\Users\swami\Documents\JobPreparation\TableauLearning\CMS_Project\dbt\.venv\Lib\site-packages\dbt\include\starter_project
+[0m13:35:40.349367 [info ] [MainThread]: Your new dbt project "cms_dbt" was created!
+Initialized new project in C:\Users\swami\Documents\JobPreparation\TableauLearning\CMS_Project\dbt\cms_dbt\cms_dbt
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:35:40.351458 [debug] [MainThread]: Command `dbt init` succeeded at 13:35:40.351458 after 0.21 seconds
+[0m13:35:40.351458 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A861A33D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A8A9C2D50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A8A9C3350>]}
+[0m13:35:40.352476 [debug] [MainThread]: Flushing usage events
+[0m13:35:42.134061 [debug] [MainThread]: An error was encountered while trying to flush usage events

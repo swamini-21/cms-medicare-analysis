@@ -1,0 +1,12 @@
+cms_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5433
+      user: postgres
+      password: "{{ env_var('DB_PASSWORD') }}"
+      dbname: cms_project
+      schema: analytics
+      threads: 4
