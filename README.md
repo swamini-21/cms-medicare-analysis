@@ -49,7 +49,7 @@ The cleaned star schema is built separately by the ETL notebook (see below), whi
 
 ## Transformations (dbt)
 
-The raw table `raw_inpatient_provider` is modeled with dbt Core into a staging view and a fact table, tested with 16 data tests.
+The raw table `raw_inpatient_provider` is modeled with dbt Core into a staging view and a fact table, tested with 18 data tests.
 
 ![dbt lineage](docs/images/dbt-lineage.png)
 
@@ -58,6 +58,19 @@ The raw table `raw_inpatient_provider` is modeled with dbt Core into a staging v
 | Source | `raw_inpatient_provider` | Raw CMS data, all text columns |
 | Staging | `stg_cms__inpatient_provider` | Renamed columns and type casts |
 | Marts | `fct_provider_year` | One row per hospital per year, with minority share, dual share, and payment per beneficiary |
+| Marts | `dim_provider` | One row per hospital, with attributes from its most recent reporting year |
+| Snapshot | `snap_provider` | SCD Type 2 history of hospital attributes (name, city, state, ZIP, RUCA code) |
+
+### Snapshot (SCD Type 2)
+
+`snap_provider` records changes to hospital attributes over time. Each change closes the old row (`dbt_valid_to` is set) and adds a new current row, so a hospital's history is never overwritten.
+
+```bash
+dbt run --select dim_provider
+dbt snapshot
+```
+
+To demonstrate it, I renamed one hospital in the raw table and re-ran the snapshot: the original name was closed out and the new name became the current row. Restoring the name added a third version.
 
 ### Run it
 
