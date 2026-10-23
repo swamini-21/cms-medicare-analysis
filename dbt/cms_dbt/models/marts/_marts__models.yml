@@ -70,3 +70,18 @@ models:
         description: Beneficiaries who are Black, Asian/Pacific Islander, Hispanic, or Native American. Blank source counts are treated as 0.
       - name: payment_per_bene
         description: Total Medicare payment divided by total beneficiaries, rounded to whole dollars.
+
+  - name: dim_provider
+    description: One row per hospital, using attributes from its most recent reporting year.
+    columns:
+      - name: provider_ccn
+        description: CMS Certification Number identifying the hospital.
+        data_tests:
+          - unique
+          - not_null
+      - name: hospital_name
+        description: Hospital name from the most recent year it reported.
+      - name: provider_state
+        description: Two-letter state abbreviation.
+      - name: latest_year
+        description: Most recent year the hospital appears in the CMS data.

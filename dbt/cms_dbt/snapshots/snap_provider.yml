@@ -1,0 +1,14 @@
+snapshots:
+  - name: snap_provider
+    relation: ref('dim_provider')
+    config:
+      schema: snapshots
+      unique_key: provider_ccn
+      strategy: check
+      check_cols:
+        - hospital_name
+        - provider_city
+        - provider_state
+        - provider_zip
+        - ruca_code
+        
