@@ -47,6 +47,38 @@ This starts PostgreSQL (exposed on `localhost:5433`) and runs the ingestion cont
 
 The cleaned star schema is built separately by the ETL notebook (see below), which reads the same database.
 
+## Transformations (dbt)
+
+The raw table `raw_inpatient_provider` is modeled with dbt Core into a staging view and a fact table, tested with 16 data tests.
+
+![dbt lineage](docs/images/dbt-lineage.png)
+
+| Layer | Model | Description |
+|-------|-------|-------------|
+| Source | `raw_inpatient_provider` | Raw CMS data, all text columns |
+| Staging | `stg_cms__inpatient_provider` | Renamed columns and type casts |
+| Marts | `fct_provider_year` | One row per hospital per year, with minority share, dual share, and payment per beneficiary |
+
+### Run it
+
+```bash
+cd dbt
+python -m venv .venv
+source .venv/Scripts/activate      # Git Bash on Windows
+pip install -r requirements.txt
+cd cms_dbt
+export DB_PASSWORD=<your password>
+dbt deps
+dbt build
+dbt docs generate && dbt docs serve
+```
+
+`dbt build` runs the models and all tests. If dbt opens a browser login for "dbt State", set `DBT_ENGINE_MANAGE_STATE=false` in your environment to turn that feature off; it isn't needed here.
+
+### Reconciliation with the original pipeline
+
+`fct_provider_year` was checked against the original `provider_stats` table: all 6,137 hospital-years match and beneficiary counts are identical. Share columns differ on a few rows due to rounding of exact ties, and payment per beneficiary differs on about 8% of rows because the original pipeline capped payment outliers and dbt does not.
+
 ### Prerequisites
 - Python 3.10+
 - PostgreSQL 14+ running locally on port 5432

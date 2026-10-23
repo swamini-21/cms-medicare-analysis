@@ -60,3 +60,13 @@ models:
               arguments:
                 min_value: 0
                 max_value: 1
+      - name: hospital_name
+        description: Name of the hospital as reported by CMS.
+      - name: ruca_code
+        description: Primary Rural-Urban Commuting Area code of the hospital's ZIP code (1-3 are metropolitan areas).
+      - name: bene_avg_risk_score
+        description: Average CMS risk score of the hospital's beneficiaries; higher means a sicker population.
+      - name: minority_count
+        description: Beneficiaries who are Black, Asian/Pacific Islander, Hispanic, or Native American. Blank source counts are treated as 0.
+      - name: payment_per_bene
+        description: Total Medicare payment divided by total beneficiaries, rounded to whole dollars.
