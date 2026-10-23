@@ -34,5 +34,7 @@ models:
   cms_dbt:
     staging:
       +materialized: view
+    marts:
+      +materialized: table
 
     

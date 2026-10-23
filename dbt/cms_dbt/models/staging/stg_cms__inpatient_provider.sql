@@ -24,7 +24,13 @@ renamed as (
         nullif(bene_avg_age, '')::numeric         as bene_avg_age,
         nullif(bene_dual_cnt, '')::int            as dual_bene_count,
         nullif(bene_ndual_cnt, '')::int           as non_dual_bene_count,
-        nullif(bene_avg_risk_scre, '')::numeric   as bene_avg_risk_score
+        nullif(bene_avg_risk_scre, '')::numeric   as bene_avg_risk_score, 
+        nullif(bene_race_wht_cnt, '')::int        as bene_race_white_count,
+        nullif(bene_race_black_cnt, '')::int      as bene_race_black_count,
+        nullif(bene_race_api_cnt, '')::int        as bene_race_api_count,
+        nullif(bene_race_hspnc_cnt, '')::int      as bene_race_hispanic_count,
+        nullif(bene_race_natind_cnt, '')::int     as bene_race_native_american_count,
+        nullif(bene_race_othr_cnt, '')::int       as bene_race_other_count
 
     from source
 
