@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: fct_provider_year
+    description: >
+      One row per hospital per year, with beneficiary counts, Medicare payments,
+      and derived minority share, dual-eligible share, and payment per beneficiary.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - provider_ccn
+              - year
+    columns:
+      - name: provider_ccn
+        description: CMS Certification Number identifying the hospital.
+        data_tests:
+          - not_null
+      - name: year
+        description: Reporting year of the CMS file.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [2023, 2024]
+      - name: provider_state
+        description: Two-letter state abbreviation of the hospital.
+        data_tests:
+          - not_null
+      - name: total_benes
+        description: Total Medicare beneficiaries treated at the hospital that year.
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: total_discharges
+        description: Total inpatient discharges.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: total_medicare_payment_amount
+        description: Total Medicare payments in dollars.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: minority_share
+        description: Share of beneficiaries who are Black, Asian/Pacific Islander, Hispanic, or Native American.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+      - name: dual_share
+        description: Share of beneficiaries who are dual-eligible for Medicare and Medicaid.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
