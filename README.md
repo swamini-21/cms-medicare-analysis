@@ -195,3 +195,10 @@ erDiagram
 ## Dashboards
 
 **[View the interactive dashboards on Tableau Public](https://public.tableau.com/views/Cms_Medicare_Analysis_Poject/Dashboard1)**
+
+## Working with AI: what it got wrong
+
+I used an AI assistant for first drafts of the ingestion script, tests, and dbt models, and reviewed every suggestion by running it. Things that didn't work as suggested:
+- **Column case mismatch broke Soda checks:** The raw table created by pandas and Soda's generated SQL had mixed-case columns (SQL doesn't quote them), due to which Postgres could not find them. I fixed them by making transforming column names to lowercase in the ingestion step
+- **Unrecognized dbt flag** - AI suggested a dbt flag (`--no-manage-state`) that did not exist. I was trying to use it sqitch off dbt State's login prompt, but it was not available in dbt Core 1.12.6. A project level flag also had no effect. Setting an enviroment variable (`DBT_ENGINE_MANAGE_STATE`) worked
+- **Rounding differences:**Comparing `fct_provider_year` with my original table showed 13 rows where dual share differed by 0.01. The cause was rounding of exact ties (pandas vs. Postgres), which I confirmed by inspecting the rows.
