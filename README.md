@@ -101,6 +101,12 @@ dbt docs generate && dbt docs serve
 - The regression behind `residual` is refit in SQL on raw payments, so its line differs from the notebook's (slope 5,232 vs. 4,075). Refitting with the notebook's capped payments reproduces the notebook's line, which confirms the difference comes from the outlier capping. Residual labels (Overpaid/Underpaid) agree on about 92% of rows, and Dashboard 7 values will shift slightly when pointed at the dbt table.
 - Age and gender tables match the original `dim_age` and `dim_gender` on every row (24,548 and 12,274 rows).
 
+## Tableau on the dbt marts
+
+The Q1 dashboard (payment per discharge by state) was rebuilt on `fct_provider_year` (exported to CSV) to confirm the dashboards can run on the dbt marts. It reproduces the database exactly: the national average from dbt is $15,266 vs. $12,936 from the original `provider_stats` table.
+
+The difference comes from outlier handling. The original pipeline capped payment values at 1.5×IQR before loading, and the dbt models use the raw CMS values. Capping lowers the biggest hospitals' payments, so high-cost states drop most (for example California: $20,814 uncapped vs. $16,859 capped). Dashboards pointed at the dbt tables show uncapped figures, and the previous capped version is kept in the original workbook for comparison.
+
 ### Prerequisites
 - Python 3.10+
 - PostgreSQL 14+ running locally on port 5432
