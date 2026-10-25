@@ -85,3 +85,45 @@ models:
         description: Two-letter state abbreviation.
       - name: latest_year
         description: Most recent year the hospital appears in the CMS data.
+
+  - name: fct_bene_age
+    description: Beneficiary counts by age group, one row per hospital, year, and age group.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [provider_ccn, year, age_group]
+    columns:
+      - name: age_group
+        description: Age band of the beneficiaries (LT_65, 65_74, 75_84, GT_84).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['LT_65', '65_74', '75_84', 'GT_84']
+      - name: bene_count
+        description: Number of beneficiaries in the age group; blank source counts are 0.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+
+  - name: fct_bene_gender
+    description: Beneficiary counts by gender, one row per hospital, year, and gender.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [provider_ccn, year, gender]
+    columns:
+      - name: gender
+        description: Gender of the beneficiaries (Female, Male).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Female', 'Male']
+      - name: bene_count
+        description: Number of beneficiaries of the gender; blank source counts are 0.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0

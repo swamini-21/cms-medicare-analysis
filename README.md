@@ -49,7 +49,8 @@ The cleaned star schema is built separately by the ETL notebook (see below), whi
 
 ## Transformations (dbt)
 
-The raw table `raw_inpatient_provider` is modeled with dbt Core into a staging view and a fact table, tested with 18 data tests.
+The raw table `raw_inpatient_provider` is modeled with dbt Core into a staging view and a fact table, tested with 26 data tests.
+
 
 ![dbt lineage](docs/images/dbt-lineage.png)
 
@@ -59,6 +60,8 @@ The raw table `raw_inpatient_provider` is modeled with dbt Core into a staging v
 | Staging | `stg_cms__inpatient_provider` | Renamed columns and type casts |
 | Marts | `fct_provider_year` | One row per hospital per year, with minority share, dual share, and payment per beneficiary |
 | Marts | `dim_provider` | One row per hospital, with attributes from its most recent reporting year |
+| Marts | `fct_bene_age` | Beneficiary counts by age group, one row per hospital, year, and age group |
+| Marts | `fct_bene_gender` | Beneficiary counts by gender, one row per hospital, year, and gender |
 | Snapshot | `snap_provider` | SCD Type 2 history of hospital attributes (name, city, state, ZIP, RUCA code) |
 
 ### Snapshot (SCD Type 2)
@@ -96,6 +99,7 @@ dbt docs generate && dbt docs serve
 - Minority and dual share differ on a handful of rows (0.01) because of rounding of exact ties (pandas vs. Postgres).
 - Payment per beneficiary differs on about 8% of rows because the original pipeline capped payment outliers and dbt does not.
 - The regression behind `residual` is refit in SQL on raw payments, so its line differs from the notebook's (slope 5,232 vs. 4,075). Refitting with the notebook's capped payments reproduces the notebook's line, which confirms the difference comes from the outlier capping. Residual labels (Overpaid/Underpaid) agree on about 92% of rows, and Dashboard 7 values will shift slightly when pointed at the dbt table.
+- Age and gender tables match the original `dim_age` and `dim_gender` on every row (24,548 and 12,274 rows).
 
 ### Prerequisites
 - Python 3.10+
