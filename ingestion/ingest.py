@@ -1,5 +1,5 @@
 import logging
-
+import time
 import pandas as pd
 import requests
 from dotenv import load_dotenv
@@ -13,10 +13,23 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("ingest")
 
 
-def fetch_page(url, size, offset):
-    r = requests.get(url, params={"size": size, "offset": offset}, timeout=60)
-    r.raise_for_status()
-    return r.json()
+def fetch_page(url, size, offset, retries=5):
+    for attempt in range(retries):
+        r = requests.get(url, params={"size": size, "offset": offset}, timeout=60)
+        if r.status_code == 429:
+            try:
+                wait = int(r.headers.get("Retry-After", ""))
+            except ValueError:
+                wait = 5 * 2**attempt
+            log.warning(
+                "Rate limited (429) at offset %s, waiting %ss (attempt %s/%s)",
+                offset, wait, attempt + 1, retries,
+            )
+            time.sleep(wait)
+            continue
+        r.raise_for_status()
+        return r.json()
+    raise RuntimeError(f"Still rate limited after {retries} attempts at offset {offset}")
 
 
 def fetch_all(url, size=config.PAGE_SIZE):
