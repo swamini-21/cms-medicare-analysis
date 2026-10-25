@@ -90,7 +90,12 @@ dbt docs generate && dbt docs serve
 
 ### Reconciliation with the original pipeline
 
-`fct_provider_year` was checked against the original `provider_stats` table: all 6,137 hospital-years match and beneficiary counts are identical. Share columns differ on a few rows due to rounding of exact ties, and payment per beneficiary differs on about 8% of rows because the original pipeline capped payment outliers and dbt does not.
+`fct_provider_year` was checked against the original `provider_stats` table across all 6,137 hospital-years:
+
+- Beneficiary counts match on every row. Dual tier, comorbidity index, and comorbidity tier match on every row.
+- Minority and dual share differ on a handful of rows (0.01) because of rounding of exact ties (pandas vs. Postgres).
+- Payment per beneficiary differs on about 8% of rows because the original pipeline capped payment outliers and dbt does not.
+- The regression behind `residual` is refit in SQL on raw payments, so its line differs from the notebook's (slope 5,232 vs. 4,075). Refitting with the notebook's capped payments reproduces the notebook's line, which confirms the difference comes from the outlier capping. Residual labels (Overpaid/Underpaid) agree on about 92% of rows, and Dashboard 7 values will shift slightly when pointed at the dbt table.
 
 ### Prerequisites
 - Python 3.10+
