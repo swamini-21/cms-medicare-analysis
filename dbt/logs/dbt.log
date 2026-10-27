@@ -26,3 +26,90 @@ Happy modeling!
 [0m13:35:40.351458 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A861A33D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A8A9C2D50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A8A9C3350>]}
 [0m13:35:40.352476 [debug] [MainThread]: Flushing usage events
 [0m13:35:42.134061 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:02:09.069473 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEA34A38D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEA7BFB990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEA7CB4450>]}
+
+
+============================== 21:02:09.078507 | 04b6bc3d-b975-4515-a76b-dc0a9404ad7b ==============================
+[0m21:02:09.078507 [info ] [MainThread]: Running with dbt=1.12.6
+[0m21:02:09.079507 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\swami\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt build --select stg_cms__inpatient_provider', 'log_path': 'logs'}
+[0m21:02:09.079507 [warn ] [MainThread]: [[33mWARNING[0m][EnvironmentVariableNamespaceDeprecation]: Deprecated
+functionality
+Found custom environment variable `DBT_ENGINE_MANAGE_STATE` in the environment.
+The prefix `DBT_ENGINE` is reserved for dbt engine environment variables. Custom
+environment variables with the prefix `DBT_ENGINE` may cause collisions and
+runtime errors.
+[0m21:02:09.081013 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '04b6bc3d-b975-4515-a76b-dc0a9404ad7b', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEA7BFB510>]}
+[0m21:02:09.081013 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\swami\Documents\JobPreparation\TableauLearning\CMS_Project\dbt\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m21:02:09.082020 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- EnvironmentVariableNamespaceDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m21:02:09.083524 [debug] [MainThread]: Command `dbt build` failed at 21:02:09.083019 after 0.15 seconds
+[0m21:02:09.084027 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEA7CB3B10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEA7CB2E10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEA7CB3750>]}
+[0m21:02:09.084027 [debug] [MainThread]: Flushing usage events
+[0m21:02:09.741447 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:38:18.581959 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019C4AC52250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019C4DC44F50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019C4F3779D0>]}
+
+
+============================== 21:38:18.587524 | be329862-dc24-4d3b-82bd-9a88e492124f ==============================
+[0m21:38:18.587524 [info ] [MainThread]: Running with dbt=1.12.6
+[0m21:38:18.587524 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\swami\\.dbt', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt build', 'log_path': 'logs'}
+[0m21:38:18.587524 [warn ] [MainThread]: [[33mWARNING[0m][EnvironmentVariableNamespaceDeprecation]: Deprecated
+functionality
+Found custom environment variable `DBT_ENGINE_MANAGE_STATE` in the environment.
+The prefix `DBT_ENGINE` is reserved for dbt engine environment variables. Custom
+environment variables with the prefix `DBT_ENGINE` may cause collisions and
+runtime errors.
+[0m21:38:18.589553 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'be329862-dc24-4d3b-82bd-9a88e492124f', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019C4F4350D0>]}
+[0m21:38:18.589553 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\swami\Documents\JobPreparation\TableauLearning\CMS_Project\dbt\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m21:38:18.590572 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- EnvironmentVariableNamespaceDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m21:38:18.590572 [debug] [MainThread]: Command `dbt build` failed at 21:38:18.590572 after 0.14 seconds
+[0m21:38:18.591567 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019C47658BD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019C4F433B50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019C4F443D90>]}
+[0m21:38:18.591567 [debug] [MainThread]: Flushing usage events
+[0m21:38:19.623821 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:38:28.841096 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F6FDCA2590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F682573A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F6FDCAA010>]}
+
+
+============================== 21:38:28.845477 | b62f9cda-ef7e-4e93-871b-5e801f2cdfe2 ==============================
+[0m21:38:28.845477 [info ] [MainThread]: Running with dbt=1.12.6
+[0m21:38:28.846487 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\swami\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt build', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m21:38:28.846487 [warn ] [MainThread]: [[33mWARNING[0m][EnvironmentVariableNamespaceDeprecation]: Deprecated
+functionality
+Found custom environment variable `DBT_ENGINE_MANAGE_STATE` in the environment.
+The prefix `DBT_ENGINE` is reserved for dbt engine environment variables. Custom
+environment variables with the prefix `DBT_ENGINE` may cause collisions and
+runtime errors.
+[0m21:38:28.846487 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'b62f9cda-ef7e-4e93-871b-5e801f2cdfe2', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F6824BB050>]}
+[0m21:38:28.848309 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\swami\Documents\JobPreparation\TableauLearning\CMS_Project\dbt\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m21:38:28.848309 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- EnvironmentVariableNamespaceDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m21:38:28.849325 [debug] [MainThread]: Command `dbt build` failed at 21:38:28.849325 after 0.13 seconds
+[0m21:38:28.849325 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F68266EE10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F6FA668650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F682574C90>]}
+[0m21:38:28.850320 [debug] [MainThread]: Flushing usage events
+[0m21:38:29.724784 [debug] [MainThread]: An error was encountered while trying to flush usage events
