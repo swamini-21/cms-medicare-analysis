@@ -3,8 +3,8 @@ cms_dbt:
   outputs:
     dev:
       type: postgres
-      host: localhost
-      port: 5433
+      host: "{{ env_var('DB_HOST', 'localhost') }}"
+      port: "{{ env_var('DB_PORT', '5433') | as_number }}"
       user: postgres
       password: "{{ env_var('DB_PASSWORD') }}"
       dbname: cms_project
