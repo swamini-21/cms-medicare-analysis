@@ -26,7 +26,7 @@ An end-to-end analytics project that uses CMS data to examine how Medicare inpat
 - **Low-comorbidity hospitals are paid more per discharge than high-burden ones** ($14,512 vs. $12,129). Excluding specialty-type hospitals (flagged by name) shrinks the gap only slightly ($14,094 vs. $11,959), and a regression controlling for state, urban/rural status, specialty status, dual-eligible share, and minority share still estimates +$1,819 (95% CI $1,257 to $2,380). Specialty hospitals are therefore not the main driver. Payment per discharge is not case-mix adjusted, which may explain part of the remaining gap.
 ## Architecture
 
-![architecture-diagram](docs/images/medicare_pipeline_architecture_v2.png)
+![architecture-diagram](docs/images/cms_architecture.png)
 
 ## Setup and How to Run
 ### Quick start (Docker)
