@@ -24,5 +24,7 @@ ExtraProject Files/
 .env
 .venv/
 
-# dbt run logs
+# dbt artifacts
 dbt/logs/
+dbt/cms_dbt/target/
+dbt/cms_dbt/logs/
