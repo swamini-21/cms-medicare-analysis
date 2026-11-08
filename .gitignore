@@ -23,3 +23,6 @@ Thumbs.db
 ExtraProject Files/
 .env
 .venv/
+
+# dbt run logs
+dbt/logs/
