@@ -1,9 +1,12 @@
-# Medicare Inpatient Payment Analysis
+# Medicare Inpatient Payment Pipeline & Analysis
 
-An end-to-end analytics project that uses CMS data to examine how Medicare inpatient payments vary across hospitals, states, and patient populations.
+An end-to-end data engineering and analytics project on CMS Medicare inpatient data. It covers containerized ingestion into PostgreSQL, dbt transformations with data tests and SCD Type 2 history, Soda data quality checks, Airflow orchestration, and Tableau dashboards that answer 8 business questions about how Medicare payments vary across hospitals.
 
-**Data:** CMS Medicare Inpatient Hospitals by Provider, 2023 and 2024
-**Stack:** Python (ETL), PostgreSQL (star schema), Tableau (8 dashboards)
+- **Data:** CMS Medicare Inpatient Hospitals by Provider, 2023 and 2024
+- **Stack:** Python · Docker · PostgreSQL (star schema) · dbt Core (26 tests, SCD Type 2 snapshot) · Soda Core · Tableau
+- **Orchestration:** Airflow DAG in [airflow-cms-pipeline](https://github.com/swamini-21/airflow-cms-pipeline)
+- **Live dashboards:** [Tableau Public](https://public.tableau.com/views/Cms_Medicare_Analysis_Poject/Dashboard1)
+
 
 ## Business Questions
 
